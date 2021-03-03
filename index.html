@@ -28,6 +28,7 @@ function permission () {
             // (optional) Do something after API prompt dismissed.
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
+                  alert("Here");
                       var currentTime = new Date().getTime();
                       //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
                       speedX += event.acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
