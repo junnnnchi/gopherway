@@ -22,6 +22,7 @@ location.href = "https:" + window.location.href.substring( window.location.proto
 }
 function permission () {
    var lastTimestamp = 0;
+   var speedX = 0;
     if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
         // (optional) Do something before API request prompt.
         DeviceMotionEvent.requestPermission()
