@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width">
 
     <title>Speech synthesiser</title>
-<script type="text/javascript">
+
+  </head>
+
+  <body>
+    <p> Your speed is: </p>
+    <p id="sp"></p>
+     <button id="request">Request</button> 
+      
+      
+    <script type="text/javascript">
 if ( location.protocol != "https:" ) {
 location.href = "https:" + window.location.href.substring( window.location.protocol.length );
 }
@@ -18,6 +27,7 @@ function permission () {
             // (optional) Do something after API prompt dismissed.
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
+                    // do something for 'e' here.
                     alert("jhi");
                 })
             }
@@ -29,13 +39,6 @@ function permission () {
 }
 const btn = document.getElementById( "request" );
 btn.addEventListener( "click", permission );
- 
-</script>
-  </head>
-
-  <body>
-    <p> Your speed is: </p>
-    <p id="sp"></p>
-     <button id="request">Request</button> 
+</script>  
   </body>
 </html>
