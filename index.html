@@ -31,12 +31,11 @@ function permission () {
                 window.addEventListener( "devicemotion", (e) => {
                 
                  var currentTime = new Date().getTime();
-             
-                  alert(event.acceleration.x / 1000);
-                      //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
-                      //speedX += event.acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
+    
+                  //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
+                  speedX += event.acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
                       //... same for Y and Z
-                      //alert(speedX);
+                     alert(speedX);
                  
                 lastTimestamp = currentTime;  
                 })
