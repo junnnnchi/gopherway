@@ -6,53 +6,34 @@
     <meta name="viewport" content="width=device-width">
 
     <title>Speech synthesiser</title>
-
-  </head>
-
-  <body>
-    <button id="request">request</button>
-    <p> v2: Your speed is: </p>
-    <p id="sp"></p>
 <script type="text/javascript">
-
-if ( location.protocol != "https:" ) {
-location.href = "https:" + window.location.href.substring( window.location.protocol.length );
-}
-function permission () {
-    if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
-        // (optional) Do something before API request prompt.
-        DeviceMotionEvent.requestPermission()
-            .then( response => {
-            // (optional) Do something after API prompt dismissed.
-            if ( response == "granted" ) {
-                window.addEventListener( "devicemotion", (e) => {
-                    // do something for 'e' here.
-                          var currentTime = new Date().getTime();
-          if (lastTimestamp === undefined) {
-            lastTimestamp = new Date().getTime();
-            return; //ignore first call, we need a reference time
-          }
-          //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
-          speedX += event.acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
-          //... same for Y and Z
-          lastTimestamp = currentTime;
-          alert("Here");
-        document.getElementById("sp").innerHTML = speedX;
+    function requestOrientationPermission(){
+        DeviceOrientationEvent.requestPermission()
+        .then(response => {
+            if (response == 'granted') {
+                window.addEventListener('deviceorientation', (e) => {
+                window.addEventListener('devicemotion', function(event) {
+                  var currentTime = new Date().getTime();
+                  if (lastTimestamp === undefined) {
+                    lastTimestamp = new Date().getTime();
+                    return; //ignore first call, we need a reference time
+                  }
+                  //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
+                  speedX += event.acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
+                  //... same for Y and Z
+                  lastTimestamp = currentTime;
+                }, false);
                 })
             }
         })
-            .catch( console.error )
-    } else {
-        alert( "DeviceMotionEvent is not defined" );
+        .catch(console.error)
     }
-}
-const btn = document.getElementById( "request" );
-btn.addEventListener( "click", permission );
-    
-</script> 
-      
-  </body>
-</html>
-      
+</script>
+  </head>
+
+  <body>
+    <p> Your speed is: </p>
+    <p id="sp"></p>
+     <button onclick='requestOrientationPermission();'>Request orientation permission</button> 
   </body>
 </html>
