@@ -16,11 +16,12 @@
       
       
     <script type="text/javascript">
-      var lastTimestamp = 0;
+     
 if ( location.protocol != "https:" ) {
 location.href = "https:" + window.location.href.substring( window.location.protocol.length );
 }
 function permission () {
+   var lastTimestamp = 0;
     if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
         // (optional) Do something before API request prompt.
         DeviceMotionEvent.requestPermission()
@@ -28,7 +29,7 @@ function permission () {
             // (optional) Do something after API prompt dismissed.
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
-                 lastTimestamp = currentTime;
+                
                  var currentTime = new Date().getTime();
                    alert(((currentTime - lastTimestamp)/1000)/3600);
                       //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
@@ -36,7 +37,7 @@ function permission () {
                       //... same for Y and Z
                       alert(speedX);
                  
-                  
+                lastTimestamp = currentTime;  
                 })
             }
         })
