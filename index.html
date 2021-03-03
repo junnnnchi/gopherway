@@ -1,162 +1,41 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Speech synthesiser</title>
 
-    <title>Hello, world!</title>
-      <style>
-      html,
-body {
-  height: 100%;
-}
-
-.local{
-          display: -ms-flexbox;
-          display: -webkit-box;
-          display: flex;
-          -ms-flex-align: center;
-          -ms-flex-pack: center;
-          -webkit-box-align: center;
-          align-items: center;
-          -webkit-box-pack: center;
-          justify-content: center;
-          padding-top: 40px;
-          padding-bottom: 40px;
-          background-color: #f5f5f5;
-        }
-
-        .form-signin {
-          width: 100%;
-          max-width: 330px;
-          padding: 15px;
-          margin: 0 auto;
-        }
-        .form-signin .checkbox {
-          font-weight: 400;
-        }
-        .form-signin .form-control {
-          position: relative;
-          box-sizing: border-box;
-          height: auto;
-          padding: 10px;
-          font-size: 16px;
-        }
-        .form-signin .form-control:focus {
-          z-index: 2;
-        }
-        .form-signin input[type="email"] {
-          margin-bottom: -1px;
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-        .form-signin input[type="password"] {
-          margin-bottom: 10px;
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-        }
-
-          .btnColor{
-              background-color: #7a0019;
-              color: #ffcc33;
-          } 
-      </style>
   </head>
-<body data-gr-c-s-loaded="true">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#"></a>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home</a>
-      </li>
-                 <li class="nav-item">
-        <a class="nav-link" href="save0.html">Saved Route</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-link" href="weather.html">Weather</a>
-      </li>
-   
-    </ul>
-  </div>
-</nav>
-    <div class="text-center local">
-    
-    <form class="form-signin">
-      <img class="mb-4" src="logo.png" alt="" width="100" height="100">
-      <h1 class="h3 mb-3 font-weight-normal">Gopher Way Nav.</h1>
-  
-  
-        <select id="start" class="form-control" placeholder="Where are you at?" required="" autofocus="">
-          <option selected="selected">Start Location</option>
-          <option value="Mcnamara">Mcnamara</option>
-             <option value="Moos">Moos</option>
-                 <option value="Coffman">Coffman</option>
-          <option value="Diehl">Diehl</option>
-            <option value="Rapson">Rapson</option>
-          <option value="Ford">Ford</option>
-            <option value="Kolthoff">Kolthoff</option>
-             <option value="Williamson">Williamson</option>
-       
-        </select>
-  
-     <select id="destination" class="form-control" placeholder="Where are you at?" required="" autofocus="">
-          <option selected="selected">Destination</option>
-         <option value="Mcnamara">Mcnamara</option>
-             <option value="Moos">Moos</option>
-                 <option value="Coffman">Coffman</option>
-          <option value="Diehl">Diehl</option>
-            <option value="Rapson">Rapson</option>
-          <option value="Ford">Ford</option>
-            <option value="Kolthoff">Kolthoff</option>
-             <option value="Williamson">Williamson</option>
-        </select>
-      <button class="btn btnColor btn-primary btn-block"  onclick="return myfunction()">Start</button>
-      <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-    </form>
-    </div>
-    
-    
-    
-    <script>
-        function myfunction() {
-           
-        
-            var e = document.getElementById("start");
-            var start = e.options[e.selectedIndex].value;
-            var e = document.getElementById("destination");
-            var destination = e.options[e.selectedIndex].value;
-          if (start=="Mcnamara" && destination=="Moos"){
-              window.location.href = "route1.html";
-              return false;
-          }
-          if (start=="Diehl" && destination=="Coffman"){
-              window.location.href = "route3.html";
-              return false;
-          }
-          if (start=="Kolthoff" && destination=="Williamson"){
-    
-              window.location.href = "route2.html";
-              return false;
-          }
-        }
-        
-    </script>
+  <body>
+    <p> Your speed is: </p>
+    <p id="sp"></p>
+<script type="text/javascript">
 
+var lastTimestamp;
+var speedX = 0, speedY = 0, speedZ = 0;
+window.addEventListener('devicemotion', function(event) {
+  var currentTime = new Date().getTime();
+  if (lastTimestamp === undefined) {
+    lastTimestamp = new Date().getTime();
+    return; //ignore first call, we need a reference time
+  }
+  //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
+  speedX += event.acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
+  //... same for Y and Z
+  lastTimestamp = currentTime;
+document.getElementById("sp").innerHTML = speedX;
+}, false);
     
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+</script>
+      
+      <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALZx66ySC0rDV3m8koVBJIMBggI5HrdMY&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>    
+      
   </body>
 </html>
