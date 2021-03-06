@@ -16,7 +16,13 @@
       
       
     <script type="text/javascript">
-     
+     function delay(delayInms) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(2);
+          }, delayInms);
+        });
+      }
 if ( location.protocol != "https:" ) {
 location.href = "https:" + window.location.href.substring( window.location.protocol.length );
 }
@@ -30,12 +36,11 @@ function permission () {
             // (optional) Do something after API prompt dismissed.
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
-
-                    
-                    setInterval(function() {
+ 
                     speedX = e.acceleration.x*2;
+                     let delayres = await delay(3000);
                    document.getElementById("sp").innerHTML=speedX;
-                  },2000);
+              
                   
                     //document.getElementById("sp").innerHTML=speedX;
                 
@@ -48,6 +53,8 @@ function permission () {
         alert( "DeviceMotionEvent is not defined" );
     }
 }
+      
+      
 const btn = document.getElementById( "request" );
 btn.addEventListener( "click", permission );
 </script>  
