@@ -31,8 +31,8 @@ function permission () {
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
 
-                    speedX = DeviceMotionEvent.acceleration.x;
-                    alert(speedX);
+                    speedX = e.acceleration.x;
+                    document.getElementById("sp").innerHTML=speedX;
                 
                  
                 })
