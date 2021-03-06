@@ -31,10 +31,8 @@ function permission () {
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
 
-                  setTimeout(function() {
-                       speedX +=  DeviceMotionEvent.acceleration.x * 0.5*1000;
-                     document.getElementById("sp").innerHTML = speedX;  
-                    }, 500);
+                    speedX +=  DeviceMotionEvent.acceleration.x * 0.5*1000;
+                    alert(speedX);
                 
                  
                 })
