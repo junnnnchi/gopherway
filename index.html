@@ -32,12 +32,12 @@ function permission () {
                 window.addEventListener( "devicemotion", (e) => {
 
                     
-                    setTimeout(function() {
-                    speedX = e.acceleration.x;
-                    //document.getElementById("sp").innerHTML=speedX;
+                    setInterval(function() {
+                    speedX = e.acceleration.x*2;
+                   document.getElementById("sp").innerHTML=speedX;
                   },2000);
                   
-                    document.getElementById("sp").innerHTML=speedX;
+                    //document.getElementById("sp").innerHTML=speedX;
                 
                  
                 })
