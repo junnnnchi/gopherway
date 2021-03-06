@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <p> Your speed is v4: </p>
+    <p> Your speed is v5: </p>
     <p id="sp"></p>
      <button id="request">Request</button> 
       
@@ -34,10 +34,10 @@ function permission () {
                     
                     setTimeout(function() {
                     speedX = e.acceleration.x;
-                    document.getElementById("sp").innerHTML=speedX;
+                    //document.getElementById("sp").innerHTML=speedX;
                   },2000);
                   
-                    
+                    document.getElementById("sp").innerHTML=speedX;
                 
                  
                 })
