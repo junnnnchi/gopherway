@@ -36,7 +36,7 @@ function permission () {
                   //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
                   speedX += event.acceleration.x * (currentTime - lastTimestamp)/1000;
                       //... same for Y and Z
-                     alert(speedX);
+                 document.getElementById("sp").innerHTML = speedX;  
                  
                 lastTimestamp = currentTime;  
                 })
