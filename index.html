@@ -32,8 +32,8 @@ function permission () {
                 window.addEventListener( "devicemotion", (e) => {
 
                   setTimeout(function() {
-                       speedX += event.acceleration.x * 0.5*1000;
-                     document.getElementById("sp").innerHTML = "here " +speedX;  
+                       speedX +=  DeviceMotionEvent.acceleration.x * 0.5*1000;
+                     document.getElementById("sp").innerHTML = speedX;  
                     }, 500);
                 
                  
