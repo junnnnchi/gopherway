@@ -16,19 +16,21 @@
       
       
     <script type="text/javascript">
-     function delay(delayInms) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(2);
-          }, delayInms);
-        });
-      }
+
 if ( location.protocol != "https:" ) {
 location.href = "https:" + window.location.href.substring( window.location.protocol.length );
 }
 function permission () {
    var lastTimestamp = 0;
    var speedX = 0;
+  
+       function delay(delayInms) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(2);
+          }, delayInms);
+        });
+      }
     if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
         // (optional) Do something before API request prompt.
         DeviceMotionEvent.requestPermission()
