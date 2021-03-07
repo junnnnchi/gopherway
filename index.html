@@ -36,15 +36,9 @@ function permission () {
                       var t =e.interval;
                   document.getElementById("status").innerHTML= "here";
                   document.getElementById("status").innerHTML= "done";
-                    if(((speedX - speedY) < 0.00001) || ((speedY-speedX) <0.00001)){
+                    if(((speedX - speedY) < 0.000001) || ((speedY-speedX) <0.000001)){
                       document.getElementById("sp").innerHTML=Math.round(speedX*t*10000)/100;
-                      var d = new Date();
-                      var n1 = new Date().getTime();
-                      var n2 = n1;
-                      while ((n2-n1)<500){
-                        n2 = new Date().getTime();
-                        document.getElementById("status").innerHTML= "measuring";
-                      }
+
                      
                     }
                   else{
