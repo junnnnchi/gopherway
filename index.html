@@ -40,8 +40,12 @@ function permission () {
                 window.addEventListener( "devicemotion", (e) => {
  
                     speedX = e.acceleration.x*2;
-                     let delayres = await delay(3000);
-                   document.getElementById("sp").innerHTML=speedX;
+                    setTimeout(func, 4000);
+                    function func() {
+                       document.getElementById("sp").innerHTML=speedX;
+                      alert("here");
+                    }
+                  // document.getElementById("sp").innerHTML=speedX;
               
                   
                     //document.getElementById("sp").innerHTML=speedX;
