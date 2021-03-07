@@ -38,7 +38,11 @@ function permission () {
                   document.getElementById("status").innerHTML= "done";
                     if(((speedX - speedY) < 0.000001) || ((speedY-speedX) <0.000001)){
                       document.getElementById("sp").innerHTML=Math.round(speedX*t*10000)/100;
-
+                       var start = new Date().getTime();
+                       var end = start;
+                       while(end -start < 2000) {
+                         end = new Date().getTime();
+                      }
                      
                     }
                   else{
