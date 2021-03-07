@@ -35,6 +35,9 @@ function permission () {
                       var t =e.interval;
                     if(((speedX - speedY) < 0.00001) || ((speedY-speedX) <0.00001)){
                       document.getElementById("sp").innerHTML=Math.round(speedX*t*10000)/100;
+                      var d = new Date();
+                      var n = d.getTime();
+                      alert(n);
                     }
                   else{
                     document.getElementById("sp").innerHTML=Math.round(speedY*t*10000)/100;
