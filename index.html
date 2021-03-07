@@ -37,12 +37,12 @@ function permission () {
                       document.getElementById("sp").innerHTML=Math.round(speedX*t*10000)/100;
                       var d = new Date();
                       var n1 = d.getTime();
-                      var n2 = d.getTime();
+                      var n2 = n1;
                       while ((n2-n1)<2000){
                         n2 = d.getTime();
                         alert(n2-n1);
                       }
-                      alert(n2-n1);
+                     
                     }
                   else{
                     document.getElementById("sp").innerHTML=Math.round(speedY*t*10000)/100;
