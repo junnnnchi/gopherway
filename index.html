@@ -36,10 +36,10 @@ function permission () {
                     if(((speedX - speedY) < 0.00001) || ((speedY-speedX) <0.00001)){
                       document.getElementById("sp").innerHTML=Math.round(speedX*t*10000)/100;
                       var d = new Date();
-                      var n1 = d.getTime();
+                      var n1 = new Date().getTime();
                       var n2 = n1;
                       while ((n2-n1)<2000){
-                        n2 = d.getTime();
+                        n2 = new Date().getTime();
                         alert(n2-n1);
                       }
                      
