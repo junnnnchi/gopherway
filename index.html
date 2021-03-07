@@ -38,6 +38,10 @@ function permission () {
                       var d = new Date();
                       var n1 = d.getTime();
                       var n2 = d.getTime();
+                      while ((n2-n1)<2000){
+                        n2 = d.getTime();
+                        alert(n2-n1);
+                      }
                       alert(n2-n1);
                     }
                   else{
