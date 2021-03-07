@@ -31,15 +31,9 @@ function permission () {
             // (optional) Do something after API prompt dismissed.
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
- 
-                    speedX = e.acceleration;
+                     speedX = e.acceleration.x;
                       document.getElementById("sp").innerHTML=speedX;
-                     var start = new Date().getTime();
-                     var end = start;
-                     while(end < start + 2000) {
-                       end = new Date().getTime();
-                     }
-                    alert("here");
+          
                     
                     
                   // document.getElementById("sp").innerHTML=speedX;
@@ -54,7 +48,9 @@ function permission () {
             .catch( console.error )
     } else {
         alert( "DeviceMotionEvent is not defined" );
-   
+                          speedX = DeviceMotionEvent.acceleration.x;
+                      document.getElementById("sp").innerHTML=speedX;
+      
       
                   
     }
