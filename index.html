@@ -41,12 +41,14 @@ function permission () {
                        var start = new Date().getTime();
                        var end = start;
                        while(end -start < 2000) {
+                         document.getElementById("status").innerHTML= "measure";
                          end = new Date().getTime();
                       }
                      
                     }
                   else{
                     document.getElementById("sp").innerHTML=Math.round(speedY*t*10000)/100;
+                    document.getElementById("status").innerHTML= "else";
                     var d = new Date();
                     var n = d.getTime();
                     //alert(n);
