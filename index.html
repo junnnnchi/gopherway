@@ -24,13 +24,8 @@ function permission () {
    var lastTimestamp = 0;
    var speedX = 0;
   
-       function delay(delayInms) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(2);
-          }, delayInms);
-        });
-      }
+const timer = ms => new Promise(res => setTimeout(res, ms));
+  
     if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
         // (optional) Do something before API request prompt.
         DeviceMotionEvent.requestPermission()
@@ -39,12 +34,11 @@ function permission () {
             if ( response == "granted" ) {
                 window.addEventListener( "devicemotion", (e) => {
  
-                    speedX = e.acceleration.x*2;
-                    setTimeout(func, 4000);
-                    function func() {
-                       document.getElementById("sp").innerHTML=speedX;
+                    speedX = e.acceleration.x;
+                    await new Promise(r => setTimeout(r, 2000));
+                      document.getElementById("sp").innerHTML=speedX;
                       alert("here");
-                    }
+                    
                   // document.getElementById("sp").innerHTML=speedX;
               
                   
