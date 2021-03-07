@@ -54,7 +54,7 @@ function permission () {
             .catch( console.error )
     } else {
         alert( "DeviceMotionEvent is not defined" );
-                          speedX = e.acceleration.x;
+                          speedX = DeviceMotionEvent.acceleration.x;
                       document.getElementById("sp").innerHTML=speedX;
                      var start = new Date().getTime();
                      var end = start;
