@@ -11,6 +11,7 @@
 
   <body>
     <p> Your speed is v1: </p>
+    <p id="status"></p>
     <p id="sp"></p>
      <button id="request">Request</button> 
       <button onclick="alert('hi')">hi</button> 
@@ -40,7 +41,7 @@ function permission () {
                       var n2 = n1;
                       while ((n2-n1)<500){
                         n2 = new Date().getTime();
-                        
+                        document.getElementById("status").innerHTML= "measuring";
                       }
                      
                     }
