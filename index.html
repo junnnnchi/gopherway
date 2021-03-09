@@ -18,63 +18,21 @@
       
     <script type="text/javascript">
 
-if ( location.protocol != "https:" ) {
-location.href = "https:" + window.location.href.substring( window.location.protocol.length );
-}
-function permission () {
-   var lastTimestamp = 0;
-   var speedX = 0;
-   var speedY = 0;
-    if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
-        // (optional) Do something before API request prompt.
-        DeviceMotionEvent.requestPermission()
-            .then( response => {
-            // (optional) Do something after API prompt dismissed.
-            if ( response == "granted" ) {
-                window.addEventListener( "devicemotion", (e) => {
-                     speedX = e.acceleration.y;
-                      var t =e.interval;
-                  document.getElementById("status").innerHTML= "here";
-                  document.getElementById("status").innerHTML= "done";
-                    if(((speedX - speedY) < 0.000001) || ((speedY-speedX) <0.000001)){
-                      document.getElementById("sp").innerHTML=Math.round(speedX*t*10000)/100;
-       
-                     
-                    }
-                  else{
-                    document.getElementById("sp").innerHTML=Math.round(speedY*t*10000)/100;
-                    document.getElementById("status").innerHTML= "else";
-                    var d = new Date();
-                    var n = d.getTime();
-                    //alert(n);
-                      
-                      
-                      }
-     
-            
- 
-                      speedY = speedX;
-          
-                    
-                  // document.getElementById("sp").innerHTML=speedX;
-              
-                  
-                    //document.getElementById("sp").innerHTML=speedX;
-                
-                 
-                })
-            }
-        })
-            .catch( console.error )
-    } else {
-        alert( "DeviceMotionEvent is not defined" );
-                     
-    }
-}
-      
-      
-const btn = document.getElementById( "request" );
-btn.addEventListener( "click", permission );
+    let button = document.getElementById("get-location");
+    let latText = document.getElementById("latitude");
+    let longText = document.getElementById("longitude");
+
+    button.addEventListener("click", function() {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+        let speed = position.coords.speed;
+          alert(speed);
+        latText.innerText = lat.toFixed(2);
+        longText.innerText = long.toFixed(2);
+      });
+    });
+
 </script>  
   </body>
 </html>
