@@ -10,9 +10,8 @@
   </head>
 
   <body>
-       <p>
-      Your location is <span id="latitude">0.00</span>°
-      latitude by <span id="longitude">0.00</span>° longitude.
+       <p id="speed">
+     
     </p>
     <button id="get-location">
       Get My Location
@@ -20,20 +19,17 @@
       
     <script type="text/javascript">
 
-    let button = document.getElementById("get-location");
-    let latText = document.getElementById("latitude");
-    let longText = document.getElementById("longitude");
-
-    button.addEventListener("click", function() {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
-        let speed = position.coords.speed;
-          alert(speed);
-        latText.innerText = lat.toFixed(2);
-        longText.innerText = long.toFixed(2);
-      });
-    });
+       var speedEl = document.getElementById('speed');
+      navigator.geolocation.watchPosition(function(geodata){
+          var speed = geodata.coords.speed;
+          if(speed === null || speed === 0){
+              speedEl.innerHTML = "You are standing still";
+          }else{
+              speedEl.innerHTML = (speed * 2.23693629) + "Mph";
+          }
+      },function(){
+          speedEl.innerHTML = "Unable to determine speed :-(";
+      }, {enableHighAccuracy: true});
 
 </script>  
   </body>
